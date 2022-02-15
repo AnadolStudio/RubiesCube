@@ -1,6 +1,6 @@
 package rubiesCube;
 
-public interface RubiesCube {
+public interface IRubiesCube {
 
     void moveColumn(FaceType type, int index, int degrees);
 

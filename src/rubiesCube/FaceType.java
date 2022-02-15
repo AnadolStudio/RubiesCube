@@ -1,21 +1,22 @@
 package rubiesCube;
 
-import static helpers.Colors.*;
+import java.awt.*;
 
 public enum FaceType {
-    TOP(WHITE, 3),
-    FRONT(GREEN, 2),
-    RIGHT(RED, -1),
-    BACK(BLUE, -2),
-    LEFT(ORANGE, 1),
-    BOTTOM(YELLOW, -3);
+    TOP(Color.WHITE, Coordinate.Y, 3),
+    FRONT(Color.GREEN, Coordinate.X, 2),
+    RIGHT(Color.RED, Coordinate.Z, -1),
+    BACK(Color.BLUE, Coordinate.X, -2),
+    LEFT(Color.ORANGE, Coordinate.Z, 1),
+    BOTTOM(Color.YELLOW, Coordinate.Y, -3);
 
-
-    public final int defaultValue;
+    public final Color defaultValue;
+    public Coordinate coordinate;
     public final int supportIndex; //Необходим для ослеживания зеркальности ряда/колонки
 
-    FaceType(int color, int supportIndex) {
+    FaceType(Color color, Coordinate coordinate, int supportIndex) {
         defaultValue = color;
         this.supportIndex = supportIndex;
+        this.coordinate = coordinate;
     }
 }

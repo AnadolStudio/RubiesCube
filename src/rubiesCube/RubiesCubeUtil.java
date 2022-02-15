@@ -2,9 +2,16 @@ package rubiesCube;
 
 public class RubiesCubeUtil {
 
-    public static int[][] rotateSquareMatrixLeft(int[][] data) {
+
+    public static RubiesCubeImpl.CubePiece[][] rotateSquareMatrix(RubiesCubeImpl.CubePiece[][] data, int degrees) {
+        return (degrees > 0) ?
+                RubiesCubeUtil.rotateSquareMatrixRight(data)
+                : RubiesCubeUtil.rotateSquareMatrixLeft(data);
+    }
+
+    public static RubiesCubeImpl.CubePiece[][] rotateSquareMatrixLeft(RubiesCubeImpl.CubePiece[][] data) {
         int side = data.length;
-        int[][] result = new int[side][side];
+        RubiesCubeImpl.CubePiece[][] result = new RubiesCubeImpl.CubePiece[side][side];
 
         for (int row = 0; row < side; row++) {
             for (int column = 0; column < side; column++) {
@@ -14,9 +21,9 @@ public class RubiesCubeUtil {
         return result;
     }
 
-    public static int[][] rotateSquareMatrixRight(int[][] data) {
+    public static RubiesCubeImpl.CubePiece[][] rotateSquareMatrixRight(RubiesCubeImpl.CubePiece[][] data) {
         int side = data.length;
-        int[][] result = new int[side][side];
+        RubiesCubeImpl.CubePiece[][] result = new RubiesCubeImpl.CubePiece[side][side];
 
         for (int row = 0; row < side; row++) {
             for (int column = 0; column < side; column++) {
