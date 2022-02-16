@@ -1,13 +1,10 @@
 package rubiesCube;
 
-import java.awt.*;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 import static java.lang.Math.abs;
-import static rubiesCube.RubiesCubeUtil.rotateSquareMatrix;
+import static rubiesCube.RubiesCubeImpl.RubiesCubeUtil.rotateSquareMatrix;
 
 public class RubiesCubeImpl implements IRubiesCube {
     protected static final int ONE_TURNOVER = 90;
@@ -131,8 +128,14 @@ public class RubiesCubeImpl implements IRubiesCube {
         }
     }
 
+    @Override
     public int getSide() {
         return side;
+    }
+
+    @Override
+    public CubePiece[][][] getData() {
+        return data;
     }
 
     @Override
@@ -236,7 +239,6 @@ public class RubiesCubeImpl implements IRubiesCube {
 
     @Override
     public String toString() {
-        //TODO должно выглядеть как развертка куба
         return "RubiesCube " +
                 "data=" + Arrays.deepToString(data) +
                 ", side=" + side +
@@ -260,71 +262,36 @@ public class RubiesCubeImpl implements IRubiesCube {
         return true;
     }
 
-    public static class CubePiece {
-        private final HashMap<Coordinate, Color> colorMap = new HashMap<>();
+    public static class RubiesCubeUtil {
 
-        public void addColor(Color color, Coordinate coordinate) {
-            colorMap.put(coordinate, color);
+        public static CubePiece[][] rotateSquareMatrix(CubePiece[][] data, int degrees) {
+            return (degrees > 0) ?
+                    RubiesCubeUtil.rotateSquareMatrixRight(data)
+                    : RubiesCubeUtil.rotateSquareMatrixLeft(data);
         }
 
-        public int getSize() {
-            return colorMap.size();
-        }
+        public static CubePiece[][] rotateSquareMatrixLeft(CubePiece[][] data) {
+            int side = data.length;
+            CubePiece[][] result = new CubePiece[side][side];
 
-        public boolean hasColors(Color... colors) {
-            for (Color color : colors) {
-                if (!colorMap.containsKey(color)) return false;
+            for (int row = 0; row < side; row++) {
+                for (int column = 0; column < side; column++) {
+                    result[side - column - 1][row] = data[row][column];
+                }
             }
-            return true;
+            return result;
         }
 
-        private void moveOnX() { //X <-> Y
-            swapCoordinate(Coordinate.X, Coordinate.Y);
-        }
+        public static CubePiece[][] rotateSquareMatrixRight(CubePiece[][] data) {
+            int side = data.length;
+            CubePiece[][] result = new CubePiece[side][side];
 
-        private void moveOnY() {//X <-> Z
-            swapCoordinate(Coordinate.X, Coordinate.Z);
-        }
-
-        private void moveOnZ() {//Z <-> Y
-            swapCoordinate(Coordinate.Z, Coordinate.Y);
-        }
-
-        private void swapCoordinate(Coordinate oneCoordinate, Coordinate twoCoordinate) {
-            Color one = colorMap.remove(oneCoordinate);
-            Color two = colorMap.remove(twoCoordinate);
-            if (one != null) {
-                colorMap.put(twoCoordinate, one);
+            for (int row = 0; row < side; row++) {
+                for (int column = 0; column < side; column++) {
+                    result[column][side - row - 1] = data[row][column];
+                }
             }
-            if (two != null) {
-                colorMap.put(oneCoordinate, two);
-            }
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            CubePiece cubePiece = (CubePiece) o;
-
-            if (colorMap.size() != cubePiece.colorMap.size()) return false;
-
-            for (Coordinate c : colorMap.keySet()) {
-                if (colorMap.get(c) != cubePiece.colorMap.get(c)) return false;
-            }
-            return true;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(colorMap);
-        }
-
-        @Override
-        public String toString() {
-            return "CubePiece{" +
-                    "colorMap=" + colorMap +
-                    '}';
+            return result;
         }
     }
 }

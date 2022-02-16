@@ -13,4 +13,8 @@ public interface IRubiesCube {
     void rotateCubeOnYAxis(int degrees);
 
     void rotateCubeOnZAxis(int degrees);
+
+    int getSide();
+
+    CubePiece[][][] getData();
 }

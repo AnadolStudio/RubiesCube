@@ -1,6 +1,6 @@
-package rubiesCube;
-
 import org.junit.Test;
+import rubiesCube.FaceType;
+import rubiesCube.RubiesCubeImpl;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,7 +8,6 @@ public class RubiesCubeTest {
 
     @Test
     public void simpleTest() {
-
         RubiesCubeImpl cubeTest = new RubiesCubeImpl(3);
         RubiesCubeImpl cubeResult = new RubiesCubeImpl(3);
         assertEquals(cubeResult, cubeTest);
@@ -39,7 +38,6 @@ public class RubiesCubeTest {
         cubeTest.rotateCubeOnZAxis(degrees);
         assertEquals(cubeResult, cubeTest);
     }
-
 
     @Test
     public void columnMoveTest() {
@@ -89,6 +87,32 @@ public class RubiesCubeTest {
         cubeTest.moveColumn(FaceType.TOP, 1, degrees);
         assertEquals(cubeResult, cubeTest);
         cubeTest.moveColumn(FaceType.TOP, 2, degrees);
+        assertEquals(cubeResult, cubeTest);
+    }
+
+    @Test
+    public void rotateFaceTest() {
+        RubiesCubeImpl cubeTest = new RubiesCubeImpl(3);
+        RubiesCubeImpl cubeResult = new RubiesCubeImpl(3);
+
+        int degrees = 360;
+        cubeTest.rotateFace(FaceType.FRONT, degrees);
+        assertEquals(cubeResult, cubeTest);
+
+        cubeTest.rotateFace(FaceType.LEFT,  degrees);
+        assertEquals(cubeResult, cubeTest);
+
+        cubeTest.rotateFace(FaceType.BOTTOM,  degrees);
+        assertEquals(cubeResult, cubeTest);
+
+        degrees = -360;
+        cubeTest.rotateFace(FaceType.BACK, degrees);
+        assertEquals(cubeResult, cubeTest);
+
+        cubeTest.rotateFace(FaceType.RIGHT,  degrees);
+        assertEquals(cubeResult, cubeTest);
+
+        cubeTest.rotateFace(FaceType.TOP,  degrees);
         assertEquals(cubeResult, cubeTest);
     }
 

@@ -11,7 +11,7 @@ public enum FaceType {
     BOTTOM(Color.YELLOW, Coordinate.Y, -3);
 
     public final Color defaultValue;
-    public Coordinate coordinate;
+    public final Coordinate coordinate;
     public final int supportIndex; //Необходим для ослеживания зеркальности ряда/колонки
 
     FaceType(Color color, Coordinate coordinate, int supportIndex) {
