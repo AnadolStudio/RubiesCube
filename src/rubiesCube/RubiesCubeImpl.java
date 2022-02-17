@@ -215,7 +215,6 @@ public class RubiesCubeImpl implements IRubiesCube {
     }
 
     private boolean needFlip(FaceType faceType) {
-        //TODO нужен отдельный метод?
         return switch (faceType) {
             case /*TOP,*/ RIGHT, BACK -> true;
             default -> false;
@@ -262,15 +261,15 @@ public class RubiesCubeImpl implements IRubiesCube {
         return true;
     }
 
-    public static class RubiesCubeUtil {
+    protected static class RubiesCubeUtil {
 
-        public static CubePiece[][] rotateSquareMatrix(CubePiece[][] data, int degrees) {
+        protected static CubePiece[][] rotateSquareMatrix(CubePiece[][] data, int degrees) {
             return (degrees > 0) ?
                     RubiesCubeUtil.rotateSquareMatrixRight(data)
                     : RubiesCubeUtil.rotateSquareMatrixLeft(data);
         }
 
-        public static CubePiece[][] rotateSquareMatrixLeft(CubePiece[][] data) {
+        protected static CubePiece[][] rotateSquareMatrixLeft(CubePiece[][] data) {
             int side = data.length;
             CubePiece[][] result = new CubePiece[side][side];
 
@@ -282,7 +281,7 @@ public class RubiesCubeImpl implements IRubiesCube {
             return result;
         }
 
-        public static CubePiece[][] rotateSquareMatrixRight(CubePiece[][] data) {
+        protected static CubePiece[][] rotateSquareMatrixRight(CubePiece[][] data) {
             int side = data.length;
             CubePiece[][] result = new CubePiece[side][side];
 
