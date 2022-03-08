@@ -241,16 +241,13 @@ public class RubiesCubeImpl implements IRubiesCube {
 
     @Override
     public void rotateFace(FaceType type, int degrees) {
-        switch (abs(type.supportIndex)) {
-            case 3 -> moveRow(FaceType.LEFT,
-                    type == FaceType.TOP ? 0 : side - 1,
-                    type == FaceType.TOP ? -degrees : degrees);
-            case 2 -> moveColumn(FaceType.LEFT,
-                    type == FaceType.FRONT ? side - 1 : 0,
-                    type == FaceType.FRONT ? degrees : -degrees);
-            case 1 -> moveColumn(FaceType.FRONT,
-                    type == FaceType.LEFT ? 0 : side - 1,
-                    type == FaceType.LEFT ? -degrees : degrees);
+        switch (type) {
+            case TOP -> moveRow(FaceType.LEFT, 0, -degrees);
+            case FRONT -> moveColumn(FaceType.LEFT, side - 1, degrees);
+            case LEFT -> moveColumn(FaceType.FRONT, 0, -degrees);
+            case BOTTOM -> moveRow(FaceType.LEFT, side - 1, degrees);
+            case BACK -> moveColumn(FaceType.LEFT, 0, -degrees);
+            case RIGHT -> moveColumn(FaceType.FRONT, side - 1, degrees);
         }
     }
 

@@ -41,7 +41,6 @@ public class SpeedRubiesCube3x3x3 extends SpeedRubiesCube {
         return this;
     }
 
-
     @Override
     public SpeedRubiesCube3x3x3 f() {
         super.f();

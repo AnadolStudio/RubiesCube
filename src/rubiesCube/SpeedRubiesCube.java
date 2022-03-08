@@ -14,7 +14,6 @@ public class SpeedRubiesCube extends RubiesCubeImpl {
         lastIndex = side - 1;
     }
 
-
     // Это стандартная нотация движений кубика Рубика. Тут "r" начит reverse.
     public SpeedRubiesCube f() {//Front
         moveColumn(FaceType.LEFT, lastIndex, ONE_TURNOVER);

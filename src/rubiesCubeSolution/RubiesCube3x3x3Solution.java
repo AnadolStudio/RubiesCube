@@ -137,14 +137,12 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
             }
             if (cube.getCubePiece(1, 2, 0).getColor(Coordinates.X) == frontNeighbour.getColor(Coordinates.X)) {
                 raiseDiagonallyToTheRight(cube);
-            }else {
+            } else {
                 cube.d().d().f().dr().fr().dr().rr().d().r();
             }
 
             cube.y();
         }
-
-//        System.out.println("First two layer done");
     }
 
     private void raiseDiagonallyToTheRight(SpeedRubiesCube3x3x3 cube) {
@@ -160,7 +158,6 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
 
     @Override
     protected void orientTheLastLayer(SpeedRubiesCube3x3x3 cube) {
-
         cube.z().z();
         while (!cube.getCubePiece(1, 0, 0).hasColor(Color.GREEN)) {
             cube.u();
