@@ -11,14 +11,14 @@ public abstract class RubiesCubeSolution<T extends SpeedRubiesCube> {
         T speedCube = createSpeedCube(cube);
 
         cross(speedCube);
-        firstTwoLayer(speedCube);
+        mid(speedCube);
         orientTheLastLayer(speedCube);
         permuteTheLastLayer(speedCube);
     }
 
     protected abstract void cross(T speedCube);
 
-    protected abstract void firstTwoLayer(T speedCube);
+    protected abstract void mid(T speedCube);
 
     protected abstract void orientTheLastLayer(T speedCube);
 

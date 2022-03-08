@@ -14,77 +14,96 @@ public class SpeedRubiesCube extends RubiesCubeImpl {
         lastIndex = side - 1;
     }
 
-    public void f() {//Front
+
+    // Это стандартная нотация движений кубика Рубика. Тут "r" начит reverse.
+    public SpeedRubiesCube f() {//Front
         moveColumn(FaceType.LEFT, lastIndex, ONE_TURNOVER);
+        return this;
     }
 
-    public void fr() {// Front reverse
+    public SpeedRubiesCube fr() {// Front reverse
         moveColumn(FaceType.LEFT, lastIndex, -ONE_TURNOVER);
+        return this;
     }
 
-    public void b() {
-        moveColumn(FaceType.LEFT, firstIndex, ONE_TURNOVER);
-    }
-
-    public void br() {
+    public SpeedRubiesCube b() {
         moveColumn(FaceType.LEFT, firstIndex, -ONE_TURNOVER);
+        return this;
     }
 
-    public void l() {
+    public SpeedRubiesCube br() {
+        moveColumn(FaceType.LEFT, firstIndex, ONE_TURNOVER);
+        return this;
+    }
+
+    public SpeedRubiesCube l() {
         moveColumn(FaceType.FRONT, firstIndex, ONE_TURNOVER);
+        return this;
     }
 
-    public void lr() {
+    public SpeedRubiesCube lr() {
         moveColumn(FaceType.FRONT, firstIndex, -ONE_TURNOVER);
-
+        return this;
     }
 
-    public void r() {
+    public SpeedRubiesCube r() {
         moveColumn(FaceType.FRONT, lastIndex, ONE_TURNOVER);
+        return this;
     }
 
-    public void rr() {
+    public SpeedRubiesCube rr() {
         moveColumn(FaceType.FRONT, lastIndex, -ONE_TURNOVER);
+        return this;
     }
 
-    public void u() {
+    public SpeedRubiesCube u() {
         moveRow(FaceType.FRONT, firstIndex, ONE_TURNOVER);
+        return this;
     }
 
-    public void ur() {
+    public SpeedRubiesCube ur() {
         moveRow(FaceType.FRONT, firstIndex, -ONE_TURNOVER);
+        return this;
     }
 
-    public void d() {
+    public SpeedRubiesCube d() {
         moveRow(FaceType.FRONT, lastIndex, ONE_TURNOVER);
+        return this;
     }
 
-    public void dr() {
+    public SpeedRubiesCube dr() {
         moveRow(FaceType.FRONT, lastIndex, -ONE_TURNOVER);
+        return this;
     }
 
 
-    public void x() {
+    public SpeedRubiesCube x() {
         rotateCubeOnXAxis(ONE_TURNOVER);
+        return this;
     }
 
-    public void xr() {
+    public SpeedRubiesCube xr() {
         rotateCubeOnXAxis(-ONE_TURNOVER);
+        return this;
     }
 
-    public void y() {
+    public SpeedRubiesCube y() {
         rotateCubeOnYAxis(ONE_TURNOVER);
+        return this;
     }
 
-    public void yr() {
+    public SpeedRubiesCube yr() {
         rotateCubeOnYAxis(-ONE_TURNOVER);
+        return this;
     }
 
-    public void z() {
+    public SpeedRubiesCube z() {
         rotateCubeOnZAxis(ONE_TURNOVER);
+        return this;
     }
 
-    public void zr() {
+    public SpeedRubiesCube zr() {
         rotateCubeOnZAxis(-ONE_TURNOVER);
+        return this;
     }
 }

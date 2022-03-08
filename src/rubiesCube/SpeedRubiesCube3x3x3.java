@@ -11,28 +11,142 @@ public class SpeedRubiesCube3x3x3 extends SpeedRubiesCube {
         super(3, data);
     }
 
-    public void s() {
+    public SpeedRubiesCube3x3x3 s() {
         moveColumn(FaceType.LEFT, MID, ONE_TURNOVER);
+        return this;
     }
 
-    public void sr() {
+    public SpeedRubiesCube3x3x3 sr() {
         moveColumn(FaceType.LEFT, MID, -ONE_TURNOVER);
+        return this;
     }
 
-    public void m() {
+    public SpeedRubiesCube3x3x3 m() {
         moveColumn(FaceType.FRONT, MID, ONE_TURNOVER);
+        return this;
     }
 
-    public void mr() {
+    public SpeedRubiesCube3x3x3 mr() {
         moveColumn(FaceType.FRONT, MID, -ONE_TURNOVER);
+        return this;
     }
 
-    public void e() {
+    public SpeedRubiesCube3x3x3 e() {
         moveRow(FaceType.FRONT, MID, ONE_TURNOVER);
+        return this;
     }
 
-    public void er() {
+    public SpeedRubiesCube3x3x3 er() {
         moveRow(FaceType.FRONT, MID, -ONE_TURNOVER);
+        return this;
     }
 
+
+    @Override
+    public SpeedRubiesCube3x3x3 f() {
+        super.f();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 fr() {
+        super.fr();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 b() {
+        super.b();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 br() {
+        super.br();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 l() {
+        super.l();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 lr() {
+        super.lr();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 r() {
+        super.r();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 rr() {
+        super.rr();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 u() {
+        super.u();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 ur() {
+        super.ur();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 d() {
+        super.d();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 dr() {
+        super.dr();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 x() {
+        super.x();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 xr() {
+        super.xr();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 y() {
+        super.y();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 yr() {
+        super.yr();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 z() {
+        super.z();
+        return this;
+    }
+
+    @Override
+    public SpeedRubiesCube3x3x3 zr() {
+        super.zr();
+        return this;
+    }
 }

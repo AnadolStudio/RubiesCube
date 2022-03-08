@@ -1,5 +1,5 @@
 package rubiesCube;
 
-public enum Coordinate {
+public enum Coordinates {
     X, Y, Z
 }

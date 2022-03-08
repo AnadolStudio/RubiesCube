@@ -1,22 +1,13 @@
 package rubiesCube;
 
+import java.awt.*;
 import java.util.Arrays;
-import java.util.List;
 
 import static java.lang.Math.abs;
 import static rubiesCube.RubiesCubeImpl.RubiesCubeUtil.rotateSquareMatrix;
 
 public class RubiesCubeImpl implements IRubiesCube {
     protected static final int ONE_TURNOVER = 90;
-
-    private static final List<FaceType> faceTypesAxisX =
-            Arrays.asList(FaceType.FRONT, FaceType.RIGHT, FaceType.BACK, FaceType.LEFT);
-
-    private static final List<FaceType> faceTypesAxisY =
-            Arrays.asList(FaceType.FRONT, FaceType.TOP, FaceType.BACK, FaceType.BOTTOM);
-
-    private static final List<FaceType> faceTypesAxisZ =
-            Arrays.asList(FaceType.LEFT, FaceType.TOP, FaceType.RIGHT, FaceType.BOTTOM);
 
     protected final CubePiece[][][] data;
     protected final int side;
@@ -56,7 +47,6 @@ public class RubiesCubeImpl implements IRubiesCube {
     }
 
     private void validateData(int side, CubePiece[][][] data) {
-        //TODO Проверка маленьких кубов 8 угловых, f(side) двойных, остальные центральные
         for (int x = 0; x < side; x++) {
             if (data[x].length != side)
                 illegalData();
@@ -128,6 +118,23 @@ public class RubiesCubeImpl implements IRubiesCube {
         }
     }
 
+    public int[] findCubePiece(Color... colors) {
+        if (colors.length < 1 || colors.length > 3) {
+            throw new IllegalArgumentException("Count colors must be > 0 and < 3");
+        }
+        for (int x = 0; x < side; x++) {
+            for (int y = 0; y < side; y++) {
+                for (int z = 0; z < side; z++) {
+                    CubePiece piece = data[x][y][z];
+                    if (piece.getColorCount() == colors.length && piece.hasAllThisColors(colors)) {
+                        return new int[]{x, y, z};
+                    }
+                }
+            }
+        }
+        return new int[]{};
+    }
+
     @Override
     public int getSide() {
         return side;
@@ -136,6 +143,10 @@ public class RubiesCubeImpl implements IRubiesCube {
     @Override
     public CubePiece[][][] getData() {
         return data;
+    }
+
+    public CubePiece getCubePiece(int x, int y, int z) {
+        return data[x][y][z];
     }
 
     @Override
@@ -162,22 +173,22 @@ public class RubiesCubeImpl implements IRubiesCube {
     @Override
     public void moveColumn(FaceType type, int index, int degrees) {
         validateDegrees(degrees);
-        boolean needFlip = needFlip(type);
-        index = needFlip ? side - 1 - index : index;
-        degrees = needFlip ? -degrees : degrees;
+
+        index = needFlipIndex(type) ? side - 1 - index : index;
+        degrees = needFlipDegrees(type) ? -degrees : degrees;
         CubePiece[][] layer;
 
         for (int i = 0; i < abs(degrees / ONE_TURNOVER); i++) {
             switch (type.coordinate) {
+                default /*Z*/ -> {
+                    layer = rotateSquareMatrix(getZLayer(index), -degrees);
+                    setZLayer(index, layer);
+                    moveAxlesForEachPiece(layer, Coordinates.Z);
+                }
                 case X, Y -> {
                     layer = rotateSquareMatrix(getXLayer(index), degrees);
                     setXLayer(index, layer);
-                    moveAxlesForEachPiece(layer, Coordinate.X);
-                }
-                default /*Z*/ -> {
-                    layer = rotateSquareMatrix(getZLayer(index), degrees);
-                    setZLayer(index, layer);
-                    moveAxlesForEachPiece(layer, Coordinate.Z);
+                    moveAxlesForEachPiece(layer, Coordinates.X);
                 }
             }
         }
@@ -194,15 +205,15 @@ public class RubiesCubeImpl implements IRubiesCube {
                             degrees);
             case X, Z -> {
                 for (int i = 0; i < abs(degrees / ONE_TURNOVER); i++) {
-                    CubePiece[][] layer = rotateSquareMatrix(getYLayer(index), degrees);
+                    CubePiece[][] layer = rotateSquareMatrix(getYLayer(index), -degrees);
                     setYLayer(index, layer);
-                    moveAxlesForEachPiece(layer, Coordinate.Y);
+                    moveAxlesForEachPiece(layer, Coordinates.Y);
                 }
             }
         }
     }
 
-    private void moveAxlesForEachPiece(CubePiece[][] layer, Coordinate coordinate) {
+    private void moveAxlesForEachPiece(CubePiece[][] layer, Coordinates coordinate) {
         for (CubePiece[] i : layer) {
             for (CubePiece j : i) {
                 switch (coordinate) {
@@ -214,9 +225,16 @@ public class RubiesCubeImpl implements IRubiesCube {
         }
     }
 
-    private boolean needFlip(FaceType faceType) {
+    private boolean needFlipIndex(FaceType faceType) {
         return switch (faceType) {
-            case /*TOP,*/ RIGHT, BACK -> true;
+            case LEFT, BACK -> true;
+            default -> false;
+        };
+    }
+
+    private boolean needFlipDegrees(FaceType faceType) {
+        return switch (faceType) {
+            case RIGHT, BACK -> true;
             default -> false;
         };
     }
