@@ -22,7 +22,7 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
 
         //Поворачиваю куб таким образом, чтобы белый центр был наверху
         if (coordinate.y == LAST_INDEX) {
-            cube.rotateCubeOnZAxis(2 * ONE_R0TATE);
+            cube.z().z();
         } else if (coordinate.y != 0) {
             boolean isXAxisRotate = coordinate.x == 1;
             int supportCoordinate = isXAxisRotate ? coordinate.z : coordinate.x;
