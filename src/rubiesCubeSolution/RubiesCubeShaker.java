@@ -29,9 +29,7 @@ public class RubiesCubeShaker {
     }
 
     public static void chess(SpeedRubiesCube3x3x3 cube) {
-        cube.mr().mr().e().e();
-        cube.rotateCubeOnYAxis(-90);
-        cube.mr().mr();
+        cube.mr().mr().e().e().yr().mr().mr();
     }
 
     public static void cross(SpeedRubiesCube3x3x3 cube) {
