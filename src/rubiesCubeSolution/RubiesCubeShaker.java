@@ -9,23 +9,25 @@ public class RubiesCubeShaker {
 
     public static void shake(RubiesCubeImpl cube) {
         int side = cube.getSide();
+        RubiesCubeImpl defaultCube = new RubiesCubeImpl(side);
+        int count = side == 2 ? 10 : 25;
 
-        for (int i = 0; i < 50; i++) {
-            int randomFaceIndex = (int) (Math.random() * FaceType.values().length);
-            boolean isRow = Math.random() < 0.5;
-            int trajectory = Math.random() < 0.5 ? 1 : -1;
-            int countRotate = (int) (Math.random() * 2);
+        do {
+            for (int i = 0; i < count; i++) {
+                int randomFaceIndex = (int) (Math.random() * FaceType.values().length);
+                boolean isRow = Math.random() < 0.5;
+                int trajectory = Math.random() < 0.5 ? 1 : -1;
+                int countRotate = (int) (Math.random() * 2);
 
-            FaceType faceType = FaceType.values()[randomFaceIndex];
-            int index = (int) (Math.random() * side);
-            int degrees = ONE_R0TATE * trajectory * countRotate;
+                FaceType faceType = FaceType.values()[randomFaceIndex];
+                int index = (int) (Math.random() * side);
+                int degrees = ONE_R0TATE * trajectory * countRotate;
 
-            if (isRow) {
-                cube.moveRow(faceType, index, degrees);
-            } else {
-                cube.moveColumn(faceType, index, degrees);
+                if (isRow) cube.moveRow(faceType, index, degrees);
+                else cube.moveColumn(faceType, index, degrees);
             }
-        }
+
+        } while (cube.equals(defaultCube));
     }
 
     public static void chess(SpeedRubiesCube3x3x3 cube) {

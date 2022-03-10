@@ -262,7 +262,7 @@ public class RubiesCubeImpl implements IRubiesCube {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof RubiesCubeImpl)) return false;
         RubiesCubeImpl that = (RubiesCubeImpl) o;
         if (side != that.side) return false;
 
