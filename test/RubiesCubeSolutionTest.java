@@ -14,7 +14,7 @@ public class RubiesCubeSolutionTest {
         SpeedRubiesCube3x3x3 defaultCube = new SpeedRubiesCube3x3x3();
         RubiesCube3x3x3Solution solution = new RubiesCube3x3x3Solution();
 
-        for (int i = 0; i < 200_000; i++) {
+        for (int i = 0; i < 20_000; i++) {
             SpeedRubiesCube3x3x3 cubeTest = new SpeedRubiesCube3x3x3();
             RubiesCubeShaker.shake(cubeTest);
             assertNotEquals(defaultCube, cubeTest);

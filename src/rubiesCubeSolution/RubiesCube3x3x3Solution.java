@@ -124,10 +124,12 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
                 while (!cube.getCubePiece(1, 2, 0).hasColor(Color.YELLOW)) {
                     cube.d();
                 }
-                raiseDiagonallyToTheRight(cube);
+                cube.raiseDiagonallyToTheRight();
             }
             cube.y();
         }
+
+        //Расставляет по своим местам
         for (int i = 0; i < 4; i++) {
             CubePiece frontNeighbour = cube.getCubePiece(1, 1, 0);
             CubePiece rightNeighbour = cube.getCubePiece(2, 1, 1);
@@ -136,18 +138,12 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
                     rightNeighbour.getColor(Coordinates.Z))) {
                 cube.d();
             }
-            if (cube.getCubePiece(1, 2, 0).getColor(Coordinates.X) == frontNeighbour.getColor(Coordinates.X)) {
-                raiseDiagonallyToTheRight(cube);
-            } else {
-                cube.d().d().f().dr().fr().dr().rr().d().r();
-            }
+            if (cube.getCubePiece(1, 2, 0).getColor(Coordinates.X) == frontNeighbour.getColor(Coordinates.X))
+                cube.raiseDiagonallyToTheRight();
+            else cube.d().yr().raiseDiagonallyToTheLeft().y();
 
             cube.y();
         }
-    }
-
-    private void raiseDiagonallyToTheRight(SpeedRubiesCube3x3x3 cube) {
-        cube.dr().rr().d().r().d().f().dr().fr();
     }
 
     private void moveDownEdgeFromTop(SpeedRubiesCube3x3x3 cube, CoordinateCube coordinate) {
@@ -176,18 +172,16 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
                 continue;
             }
             if (cubePiece.hasColor(frontNeighbour.getColor(Coordinates.X))) {
-                swapDiagonallyLeft(cube);
-                cube.y();
+                cube.swapDiagonallyLeftOnTop().y();
             } else {
                 cube.y();
                 frontNeighbour = cube.getCubePiece(1, 1, 0);
 
                 if (cube.getCubePiece(workPlace.x, workPlace.y, workPlace.z)
                         .hasColor(frontNeighbour.getColor(Coordinates.X))) {
-                    swapDiagonallyRight(cube);
+                    cube.swapDiagonallyRightOnTop();
                 }
-                swapDiagonallyLeft(cube);
-                swapDiagonallyRight(cube);
+                cube.swapDiagonallyLeftOnTop().swapDiagonallyRightOnTop();
                 break;
             }
         }
@@ -198,18 +192,10 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
         for (int i = 0; i < 4; i++) {
             if (cube.getCubePiece(workPlace.x, workPlace.y, workPlace.z)
                     .getCoordinate(Color.YELLOW) != Coordinates.Y) {
-                cube.f().e().f().e().f().e().f().e();
+                cube.flipOver();
             }
             cube.u();
         }
-    }
-
-    private void swapDiagonallyRight(SpeedRubiesCube3x3x3 cube) {
-        cube.u().fr().l().u().lr().ur().f();
-    }
-
-    private void swapDiagonallyLeft(SpeedRubiesCube3x3x3 cube) {
-        cube.ur().f().r().ur().rr().u().fr();
     }
 
     @Override
@@ -219,6 +205,7 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
         CubePiece frontNeighbour = cube.getCubePiece(1, 1, 0);
         CubePiece rightNeighbour = cube.getCubePiece(2, 1, 1);
 
+        // Расставляет на своих местах
         for (int i = 0; i < 4; i++) {
             if (cube.getCubePiece(workPlace.x, workPlace.y, workPlace.z).hasAllThisColors(
                     Color.YELLOW,
@@ -226,8 +213,8 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
                     rightNeighbour.getColor(Coordinates.Z))) {
                 break;
             }
-            if (i == 2) cube.fr().l().br().lr().f().l().b().lr();
-            else cube.rr().fr().l().f().r().fr().lr().f();
+            if (i == 2) cube.rotateThreeCubeCounterClockwise();
+            else cube.rotateThreeCubeClockwise();
         }
         cube.y().y();
         frontNeighbour = cube.getCubePiece(1, 1, 0);
@@ -236,15 +223,16 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
                 Color.YELLOW,
                 frontNeighbour.getColor(Coordinates.X),
                 rightNeighbour.getColor(Coordinates.Z))) {
-            cube.rr().fr().l().f().r().fr().lr().f();
+            cube.rotateThreeCubeClockwise();
         }
 
+        // Переворачивает
         for (int i = 0; i < 4; i++) {
             switch (cube.getCubePiece(workPlace.x, workPlace.y, workPlace.z).getCoordinate(Color.YELLOW)) {
                 default -> {
                 }
-                case X -> cube.r().fr().rr().f().r().fr().rr().f();
-                case Z -> cube.fr().r().f().rr().fr().r().f().rr();
+                case X -> cube.rotateCubeClockwise();
+                case Z -> cube.rotateCubeCounterClockwise();
             }
             cube.u();
         }

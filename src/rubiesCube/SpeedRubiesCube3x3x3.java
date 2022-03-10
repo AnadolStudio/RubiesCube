@@ -148,4 +148,49 @@ public class SpeedRubiesCube3x3x3 extends SpeedRubiesCube {
         super.zr();
         return this;
     }
+
+    public SpeedRubiesCube3x3x3 raiseDiagonallyToTheRight() {
+        dr().rr().d().r().d().f().dr().fr();
+        return this;
+    }
+
+    public SpeedRubiesCube3x3x3 raiseDiagonallyToTheLeft() {
+        d().lr().dr().l().dr().fr().d().f();
+        return this;
+    }
+
+    public SpeedRubiesCube3x3x3 flipOver() {
+        f().e().f().e().f().e().f().e();
+        return this;
+    }
+
+    public SpeedRubiesCube3x3x3 rotateThreeCubeClockwise() {
+        rr().fr().l().f().r().fr().lr().f();
+        return this;
+    }
+
+    public SpeedRubiesCube3x3x3 rotateThreeCubeCounterClockwise() {
+        fr().l().br().lr().f().l().b().lr();
+        return this;
+    }
+
+    public SpeedRubiesCube3x3x3 rotateCubeClockwise() {
+        r().fr().rr().f().r().fr().rr().f();
+        return this;
+    }
+
+    public SpeedRubiesCube3x3x3 rotateCubeCounterClockwise() {
+        fr().r().f().rr().fr().r().f().rr();
+        return this;
+    }
+
+    public SpeedRubiesCube3x3x3 swapDiagonallyRightOnTop() {
+        u().fr().l().u().lr().ur().f();
+        return this;
+    }
+
+    public SpeedRubiesCube3x3x3 swapDiagonallyLeftOnTop() {
+        ur().f().r().ur().rr().u().fr();
+        return this;
+    }
 }
