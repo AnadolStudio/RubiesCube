@@ -47,10 +47,16 @@ public class RubiesCubeImpl implements IRubiesCube {
     }
 
     private void validateData(int side, CubePiece[][][] data) {
+        // Сторона по X
+        if (data.length != side)
+            illegalData();
+
+        // Сторона по Y
         for (int x = 0; x < side; x++) {
             if (data[x].length != side)
                 illegalData();
 
+            // Сторона по Z
             for (int y = 0; y < side; y++) {
                 if (data[x][y].length != side)
                     illegalData();
