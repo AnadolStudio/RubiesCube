@@ -1,8 +1,8 @@
-package rubiesCubeSolution;
+package rubiescubesolution;
 
-import rubiesCube.FaceType;
-import rubiesCube.RubiesCubeImpl;
-import rubiesCube.SpeedRubiesCube3x3x3;
+import rubiescube.FaceType;
+import rubiescube.RubiesCubeImpl;
+import rubiescube.SpeedRubiesCube3x3x3;
 
 public class RubiesCubeShaker {
     private static final int ONE_R0TATE = 90;

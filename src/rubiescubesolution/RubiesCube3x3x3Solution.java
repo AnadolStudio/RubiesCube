@@ -1,6 +1,6 @@
-package rubiesCubeSolution;
+package rubiescubesolution;
 
-import rubiesCube.*;
+import rubiescube.*;
 
 import java.awt.*;
 import java.util.Objects;

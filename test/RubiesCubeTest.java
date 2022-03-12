@@ -1,7 +1,7 @@
 import org.junit.Test;
-import rubiesCube.FaceType;
-import rubiesCube.RubiesCubeImpl;
-import rubiesCube.SpeedRubiesCube3x3x3;
+import rubiescube.FaceType;
+import rubiescube.RubiesCubeImpl;
+import rubiescube.SpeedRubiesCube3x3x3;
 
 import java.awt.*;
 

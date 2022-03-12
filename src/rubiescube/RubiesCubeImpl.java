@@ -1,11 +1,11 @@
-package rubiesCube;
+package rubiescube;
 
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Objects;
 
 import static java.lang.Math.abs;
-import static rubiesCube.RubiesCubeImpl.RubiesCubeUtil.rotateSquareMatrix;
+import static rubiescube.RubiesCubeImpl.RubiesCubeUtil.rotateSquareMatrix;
 
 public class RubiesCubeImpl implements IRubiesCube {
     protected static final int ONE_TURNOVER = 90;
@@ -27,7 +27,7 @@ public class RubiesCubeImpl implements IRubiesCube {
             validateData(side, data);
             this.data = data;
         } else {
-            this.data = createDefault(side);
+            this.data = createDefaultCube(side);
             fillColor(side);
         }
     }
@@ -69,7 +69,7 @@ public class RubiesCubeImpl implements IRubiesCube {
         throw new IllegalArgumentException("Illegal data");
     }
 
-    private CubePiece[][][] createDefault(int side) {
+    private CubePiece[][][] createDefaultCube(int side) {
         CubePiece[][][] data = new CubePiece[side][side][side];
         for (int x = 0; x < side; x++) {
             for (int y = 0; y < side; y++) {

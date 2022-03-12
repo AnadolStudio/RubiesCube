@@ -1,4 +1,4 @@
-package rubiesCube;
+package rubiescube;
 
 public class SpeedRubiesCube extends RubiesCubeImpl {
     protected final int firstIndex;

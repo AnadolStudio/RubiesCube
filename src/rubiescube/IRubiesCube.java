@@ -1,4 +1,4 @@
-package rubiesCube;
+package rubiescube;
 
 public interface IRubiesCube {
 
