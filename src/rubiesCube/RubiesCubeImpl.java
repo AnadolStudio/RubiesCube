@@ -2,6 +2,7 @@ package rubiesCube;
 
 import java.awt.*;
 import java.util.Arrays;
+import java.util.Objects;
 
 import static java.lang.Math.abs;
 import static rubiesCube.RubiesCubeImpl.RubiesCubeUtil.rotateSquareMatrix;
@@ -280,6 +281,13 @@ public class RubiesCubeImpl implements IRubiesCube {
             }
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(side);
+        result = 31 * result + Arrays.deepHashCode(data);
+        return result;
     }
 
     protected static class RubiesCubeUtil {
