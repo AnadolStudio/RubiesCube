@@ -300,8 +300,8 @@ public class RubiesCubeImpl implements IRubiesCube {
 
         protected static CubePiece[][] rotateSquareMatrix(CubePiece[][] data, int degrees) {
             return (degrees > 0) ?
-                    RubiesCubeUtil.rotateSquareMatrix(data.length, (row, column) -> data[data.length - column - 1][row])
-                    : RubiesCubeUtil.rotateSquareMatrix(data.length, (row, column) -> data[column][data.length - row - 1]);
+                    rotateSquareMatrix(data.length, (row, column) -> data[data.length - column - 1][row])
+                    : rotateSquareMatrix(data.length, (row, column) -> data[column][data.length - row - 1]);
         }
 
         protected static CubePiece[][] rotateSquareMatrix(int size, BiFunction<Integer, Integer, CubePiece> function) {
