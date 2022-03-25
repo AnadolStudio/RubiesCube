@@ -1,7 +1,7 @@
 package rubiescubesolution;
 
 import rubiescube.IRubiesCube;
-import rubiescube.SpeedRubiesCube;
+import rubiescube.imlementation.SpeedRubiesCube;
 
 public abstract class RubiesCubeSolution<T extends SpeedRubiesCube> {
 

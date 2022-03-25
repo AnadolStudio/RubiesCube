@@ -1,4 +1,7 @@
-package rubiescube;
+package rubiescube.imlementation;
+
+import rubiescube.CubePiece;
+import rubiescube.enumeration.FaceType;
 
 public class SpeedRubiesCube extends RubiesCubeImpl {
     protected final int firstIndex;

@@ -1,5 +1,7 @@
 package rubiescube;
 
+import rubiescube.enumeration.Coordinates;
+
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Objects;

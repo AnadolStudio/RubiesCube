@@ -1,6 +1,6 @@
 import org.junit.Test;
-import rubiescube.RubiesCubeImpl;
-import rubiescube.SpeedRubiesCube3x3x3;
+import rubiescube.imlementation.RubiesCubeImpl;
+import rubiescube.imlementation.SpeedRubiesCube3x3x3;
 import rubiescubesolution.RubiesCube3x3x3Solution;
 import rubiescubesolution.RubiesCubeShaker;
 

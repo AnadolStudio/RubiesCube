@@ -1,4 +1,7 @@
-package rubiescube;
+package rubiescube.imlementation;
+
+import rubiescube.CubePiece;
+import rubiescube.enumeration.FaceType;
 
 public class SpeedRubiesCube3x3x3 extends SpeedRubiesCube {
     private final int MID = 1;// mid index

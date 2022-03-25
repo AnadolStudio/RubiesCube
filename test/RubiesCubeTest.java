@@ -1,7 +1,7 @@
 import org.junit.Test;
-import rubiescube.FaceType;
-import rubiescube.RubiesCubeImpl;
-import rubiescube.SpeedRubiesCube3x3x3;
+import rubiescube.enumeration.FaceType;
+import rubiescube.imlementation.RubiesCubeImpl;
+import rubiescube.imlementation.SpeedRubiesCube3x3x3;
 
 import java.awt.*;
 
@@ -154,20 +154,20 @@ public class RubiesCubeTest {
         cubeTest.rotateFace(FaceType.FRONT, degrees);
         assertEquals(cubeResult, cubeTest);
 
-        cubeTest.rotateFace(FaceType.LEFT,  degrees);
+        cubeTest.rotateFace(FaceType.LEFT, degrees);
         assertEquals(cubeResult, cubeTest);
 
-        cubeTest.rotateFace(FaceType.BOTTOM,  degrees);
+        cubeTest.rotateFace(FaceType.BOTTOM, degrees);
         assertEquals(cubeResult, cubeTest);
 
         degrees = -360;
         cubeTest.rotateFace(FaceType.BACK, degrees);
         assertEquals(cubeResult, cubeTest);
 
-        cubeTest.rotateFace(FaceType.RIGHT,  degrees);
+        cubeTest.rotateFace(FaceType.RIGHT, degrees);
         assertEquals(cubeResult, cubeTest);
 
-        cubeTest.rotateFace(FaceType.TOP,  degrees);
+        cubeTest.rotateFace(FaceType.TOP, degrees);
         assertEquals(cubeResult, cubeTest);
     }
 

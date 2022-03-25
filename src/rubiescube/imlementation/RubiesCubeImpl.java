@@ -1,11 +1,17 @@
-package rubiescube;
+package rubiescube.imlementation;
+
+import rubiescube.CubePiece;
+import rubiescube.IRubiesCube;
+import rubiescube.enumeration.Coordinates;
+import rubiescube.enumeration.FaceType;
 
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.function.BiFunction;
 
 import static java.lang.Math.abs;
-import static rubiescube.RubiesCubeImpl.RubiesCubeUtil.rotateSquareMatrix;
+import static rubiescube.imlementation.RubiesCubeImpl.RubiesCubeUtil.rotateSquareMatrix;
 
 public class RubiesCubeImpl implements IRubiesCube {
     protected static final int ONE_TURNOVER = 90;
@@ -290,35 +296,21 @@ public class RubiesCubeImpl implements IRubiesCube {
         return result;
     }
 
-    protected static class RubiesCubeUtil {
+    public static class RubiesCubeUtil {
 
         protected static CubePiece[][] rotateSquareMatrix(CubePiece[][] data, int degrees) {
             return (degrees > 0) ?
-                    RubiesCubeUtil.rotateSquareMatrixRight(data)
-                    : RubiesCubeUtil.rotateSquareMatrixLeft(data);
+                    RubiesCubeUtil.rotateSquareMatrix(data.length, (row, column) -> data[data.length - column - 1][row])
+                    : RubiesCubeUtil.rotateSquareMatrix(data.length, (row, column) -> data[column][data.length - row - 1]);
         }
 
-        protected static CubePiece[][] rotateSquareMatrixLeft(CubePiece[][] data) {
-            int side = data.length;
-            CubePiece[][] result = new CubePiece[side][side];
+        protected static CubePiece[][] rotateSquareMatrix(int size, BiFunction<Integer, Integer, CubePiece> function) {
+            CubePiece[][] result = new CubePiece[size][size];
 
-            for (int row = 0; row < side; row++) {
-                for (int column = 0; column < side; column++) {
-                    result[side - column - 1][row] = data[row][column];
-                }
-            }
-            return result;
-        }
+            for (int row = 0; row < size; row++)
+                for (int column = 0; column < size; column++)
+                    result[row][column] = function.apply(row, column);
 
-        protected static CubePiece[][] rotateSquareMatrixRight(CubePiece[][] data) {
-            int side = data.length;
-            CubePiece[][] result = new CubePiece[side][side];
-
-            for (int row = 0; row < side; row++) {
-                for (int column = 0; column < side; column++) {
-                    result[column][side - row - 1] = data[row][column];
-                }
-            }
             return result;
         }
     }

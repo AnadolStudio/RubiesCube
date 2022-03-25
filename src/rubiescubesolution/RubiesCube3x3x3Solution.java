@@ -1,6 +1,9 @@
 package rubiescubesolution;
 
 import rubiescube.*;
+import rubiescube.enumeration.Coordinates;
+import rubiescube.enumeration.FaceType;
+import rubiescube.imlementation.SpeedRubiesCube3x3x3;
 
 import java.awt.*;
 import java.util.Objects;

@@ -1,5 +1,7 @@
 package rubiescube;
 
+import rubiescube.enumeration.FaceType;
+
 public interface IRubiesCube {
 
     void moveColumn(FaceType type, int index, int degrees);

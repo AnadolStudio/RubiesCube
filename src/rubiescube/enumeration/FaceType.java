@@ -1,4 +1,6 @@
-package rubiescube;
+package rubiescube.enumeration;
+
+import rubiescube.enumeration.Coordinates;
 
 import java.awt.*;
 
