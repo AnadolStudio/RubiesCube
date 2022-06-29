@@ -16,7 +16,7 @@ public class RubiesCubeSolutionTest {
 
         for (int i = 0; i < 2_000; i++) {
             SpeedRubiesCube3x3x3 cubeTest = new SpeedRubiesCube3x3x3();
-            RubiesCubeShaker.shake(cubeTest);
+            RubiesCubeShaker.random(cubeTest);
             assertNotEquals(defaultCube, cubeTest);
 
             solution.run(cubeTest);
@@ -36,19 +36,26 @@ public class RubiesCubeSolutionTest {
             RubiesCubeImpl cubeTest = new RubiesCubeImpl(3);
             assertEquals(defaultCube, cubeTest);
 
-            RubiesCubeShaker.shake(cubeTest);
+            RubiesCubeShaker.random(cubeTest);
 
             assertNotEquals(defaultCube, cubeTest);
 
+            SpeedRubiesCube3x3x3 speedRubiesCube3x3x3 = new SpeedRubiesCube3x3x3();
+            assertEquals(defaultCube, speedRubiesCube3x3x3);
+
+            RubiesCubeShaker.random(speedRubiesCube3x3x3);
+
+            assertNotEquals(defaultCube, speedRubiesCube3x3x3);
+
             defaultCube = new RubiesCubeImpl(4);
             cubeTest = new RubiesCubeImpl(4);
-            RubiesCubeShaker.shake(cubeTest);
+            RubiesCubeShaker.random(cubeTest);
 
             assertNotEquals(defaultCube, cubeTest);
 
             defaultCube = new RubiesCubeImpl(2);
             cubeTest = new RubiesCubeImpl(2);
-            RubiesCubeShaker.shake(cubeTest);
+            RubiesCubeShaker.random(cubeTest);
 
             assertNotEquals(defaultCube, cubeTest);
         }

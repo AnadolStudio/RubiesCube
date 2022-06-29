@@ -26,6 +26,7 @@ public class CubePiece {
         for (Color color : colors) {
             if (!coordinateMap.containsKey(color)) return false;
         }
+
         return true;
     }
 
@@ -80,6 +81,7 @@ public class CubePiece {
         for (Coordinates c : colorMap.keySet()) {
             if (colorMap.get(c) != cubePiece.colorMap.get(c)) return false;
         }
+
         return true;
     }
 

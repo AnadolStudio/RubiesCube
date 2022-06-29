@@ -84,6 +84,7 @@ public class RubiesCubeImpl implements IRubiesCube {
                 }
             }
         }
+
         return data;
     }
 
