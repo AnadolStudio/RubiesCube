@@ -287,14 +287,13 @@ public class RubiesCubeImpl implements IRubiesCube {
                 }
             }
         }
+
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(side);
-        result = 31 * result + Arrays.deepHashCode(data);
-        return result;
+        return 31 * Objects.hash(side) + Arrays.deepHashCode(data);
     }
 
     public static class RubiesCubeUtil {

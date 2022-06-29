@@ -43,7 +43,7 @@ public class RubiesCubeSolutionTest {
             SpeedRubiesCube3x3x3 speedRubiesCube3x3x3 = new SpeedRubiesCube3x3x3();
             assertEquals(defaultCube, speedRubiesCube3x3x3);
 
-            RubiesCubeShaker.random(speedRubiesCube3x3x3);
+            RubiesCubeShaker.Manager.shake(speedRubiesCube3x3x3);
 
             assertNotEquals(defaultCube, speedRubiesCube3x3x3);
 
