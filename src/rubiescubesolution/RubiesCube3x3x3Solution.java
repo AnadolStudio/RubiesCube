@@ -9,11 +9,10 @@ import java.awt.*;
 import java.util.Objects;
 
 public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3x3x3> {
-    private static final int ONE_R0TATE = 90;
     private final int LAST_INDEX = 2;
 
     @Override
-    protected SpeedRubiesCube3x3x3 createSpeedCube(IRubiesCube cube) {
+    protected SpeedRubiesCube3x3x3 createSpeedCube(RubiesCube cube) {
         if (cube.getSide() != 3) throw new IllegalArgumentException("Cube must have side = 3");
 
         return new SpeedRubiesCube3x3x3(cube.getData());
@@ -29,7 +28,7 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
         } else if (coordinate.y != 0) {
             boolean isXAxisRotate = coordinate.x == 1;
             int supportCoordinate = isXAxisRotate ? coordinate.z : coordinate.x;
-            int degrees = ONE_R0TATE * (supportCoordinate == LAST_INDEX ? -1 : 1);
+            int degrees = RubiesCube.ONE_ROTATE * (supportCoordinate == LAST_INDEX ? -1 : 1);
 
             if (isXAxisRotate) cube.rotateCubeOnXAxis(degrees);
             else cube.rotateCubeOnZAxis(degrees);
@@ -44,10 +43,10 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
             if (!workPlace.equals(coordinate)) {
                 if (coordinate.y == 0) moveDownFromTop(cube, coordinate);
                 int trajectory = coordinate.x == 0 ? 1 : -1;
-                int degrees = ONE_R0TATE * trajectory * (coordinate.y == 1 ? coordinate.z / 2 : coordinate.z);
+                int degrees = RubiesCube.ONE_ROTATE * trajectory * (coordinate.y == 1 ? coordinate.z / 2 : coordinate.z);
                 cube.moveRow(FaceType.FRONT, coordinate.y, degrees);
 
-                degrees = ONE_R0TATE * coordinate.y * trajectory;
+                degrees = RubiesCube.ONE_ROTATE * coordinate.y * trajectory;
                 cube.rotateFace(FaceType.FRONT, degrees);
             }
 
@@ -69,7 +68,7 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
             faceType = FaceType.RIGHT;
             trajectory = -1;
         } else faceType = FaceType.BACK;
-        cube.rotateFace(faceType, ONE_R0TATE * trajectory);
+        cube.rotateFace(faceType, RubiesCube.ONE_ROTATE * trajectory);
 
         switch (faceType) {
             case LEFT -> coordinate.set(0, 1, 0);
@@ -104,7 +103,7 @@ public class RubiesCube3x3x3Solution extends RubiesCubeSolution<SpeedRubiesCube3
             } else {
                 int trajectory = coordinate.z == 2 ? -1 : 1;
 
-                int degrees = ONE_R0TATE * trajectory * (coordinate.x == coordinate.z ? 1
+                int degrees = RubiesCube.ONE_ROTATE * trajectory * (coordinate.x == coordinate.z ? 1
                         : coordinate.x > coordinate.z ? 0 : 2);
                 cube.moveRow(FaceType.FRONT, LAST_INDEX, degrees);
             }

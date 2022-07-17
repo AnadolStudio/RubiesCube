@@ -4,26 +4,44 @@ import rubiescube.enumeration.FaceType;
 import rubiescube.imlementation.RubiesCubeImpl;
 import rubiescube.imlementation.SpeedRubiesCube3x3x3;
 
-public class RubiesCubeShaker {
-    private static final int ONE_R0TATE = 90;
+import java.util.Random;
 
-    public static void shake(RubiesCubeImpl cube) {
+public class RubiesCubeShaker {
+
+    private enum ShakeType {
+        CHESS,
+        CROSS,
+        EYE,
+        RANDOM
+    }
+
+    public static class Manager {
+
+        public static void shake(SpeedRubiesCube3x3x3 cube) {
+            Random randomUtil = new Random();
+            int i = randomUtil.nextInt(ShakeType.values().length);
+
+            switch (ShakeType.values()[i]) {
+                case CHESS -> chess(cube);
+                case CROSS -> cross(cube);
+                case EYE -> eye(cube);
+                default -> random(cube);
+            }
+        }
+    }
+
+    public static void random(RubiesCubeImpl cube) {
         int side = cube.getSide();
         RubiesCubeImpl defaultCube = new RubiesCubeImpl(side);
         int count = side == 2 ? 10 : 25;
 
         do {
             for (int i = 0; i < count; i++) {
-                int randomFaceIndex = (int) (Math.random() * FaceType.values().length);
-                boolean isRow = Math.random() < 0.5;
-                int trajectory = Math.random() < 0.5 ? 1 : -1;
-                int countRotate = (int) (Math.random() * 2);
+                FaceType faceType = RandomUtil.getFaceType();
+                int index = RandomUtil.getIndex(side);
+                int degrees = RandomUtil.getDegrees();
 
-                FaceType faceType = FaceType.values()[randomFaceIndex];
-                int index = (int) (Math.random() * side);
-                int degrees = ONE_R0TATE * trajectory * countRotate;
-
-                if (isRow) cube.moveRow(faceType, index, degrees);
+                if (Math.random() < 0.5) cube.moveRow(faceType, index, degrees);
                 else cube.moveColumn(faceType, index, degrees);
             }
 

@@ -15,32 +15,32 @@ public class SpeedRubiesCube3x3x3 extends SpeedRubiesCube {
     }
 
     public SpeedRubiesCube3x3x3 s() {
-        moveColumn(FaceType.LEFT, MID, ONE_TURNOVER);
+        moveColumn(FaceType.LEFT, MID, ONE_ROTATE);
         return this;
     }
 
     public SpeedRubiesCube3x3x3 sr() {
-        moveColumn(FaceType.LEFT, MID, -ONE_TURNOVER);
+        moveColumn(FaceType.LEFT, MID, -ONE_ROTATE);
         return this;
     }
 
     public SpeedRubiesCube3x3x3 m() {
-        moveColumn(FaceType.FRONT, MID, ONE_TURNOVER);
+        moveColumn(FaceType.FRONT, MID, ONE_ROTATE);
         return this;
     }
 
     public SpeedRubiesCube3x3x3 mr() {
-        moveColumn(FaceType.FRONT, MID, -ONE_TURNOVER);
+        moveColumn(FaceType.FRONT, MID, -ONE_ROTATE);
         return this;
     }
 
     public SpeedRubiesCube3x3x3 e() {
-        moveRow(FaceType.FRONT, MID, ONE_TURNOVER);
+        moveRow(FaceType.FRONT, MID, ONE_ROTATE);
         return this;
     }
 
     public SpeedRubiesCube3x3x3 er() {
-        moveRow(FaceType.FRONT, MID, -ONE_TURNOVER);
+        moveRow(FaceType.FRONT, MID, -ONE_ROTATE);
         return this;
     }
 
