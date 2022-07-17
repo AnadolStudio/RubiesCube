@@ -1,7 +1,7 @@
 package rubiescube.imlementation;
 
 import rubiescube.CubePiece;
-import rubiescube.IRubiesCube;
+import rubiescube.RubiesCube;
 import rubiescube.enumeration.Coordinates;
 import rubiescube.enumeration.FaceType;
 
@@ -13,8 +13,7 @@ import java.util.function.BiFunction;
 import static java.lang.Math.abs;
 import static rubiescube.imlementation.RubiesCubeImpl.RubiesCubeUtil.rotateSquareMatrix;
 
-public class RubiesCubeImpl implements IRubiesCube {
-    protected static final int ONE_TURNOVER = 90;
+public class RubiesCubeImpl implements RubiesCube {
 
     protected final CubePiece[][][] data;
     protected final int side;
@@ -39,7 +38,7 @@ public class RubiesCubeImpl implements IRubiesCube {
     }
 
     private static void validateDegrees(int degrees) {
-        if (degrees % ONE_TURNOVER != 0) {
+        if (degrees % ONE_ROTATE != 0) {
             throw new IllegalArgumentException("Degrees must be multiple of 90");
         }
     }
@@ -105,6 +104,7 @@ public class RubiesCubeImpl implements IRubiesCube {
         for (int x = 0; x < side; x++) {
             for (int z = 0; z < side; z++) layer[x][z] = data[x][y][z];
         }
+
         return layer;
     }
 
@@ -113,6 +113,7 @@ public class RubiesCubeImpl implements IRubiesCube {
         for (int x = 0; x < side; x++) {
             for (int y = 0; y < side; y++) layer[x][y] = data[x][y][z];
         }
+
         return layer;
     }
 
@@ -136,6 +137,7 @@ public class RubiesCubeImpl implements IRubiesCube {
         if (colors.length < 1 || colors.length > 3) {
             throw new IllegalArgumentException("Count colors must be > 0 and < 3");
         }
+
         for (int x = 0; x < side; x++) {
             for (int y = 0; y < side; y++) {
                 for (int z = 0; z < side; z++) {
@@ -146,6 +148,7 @@ public class RubiesCubeImpl implements IRubiesCube {
                 }
             }
         }
+
         return new int[]{};
     }
 
@@ -192,7 +195,7 @@ public class RubiesCubeImpl implements IRubiesCube {
         degrees = needFlipDegrees(type) ? -degrees : degrees;
         CubePiece[][] layer;
 
-        for (int i = 0; i < abs(degrees / ONE_TURNOVER); i++) {
+        for (int i = 0; i < abs(degrees / ONE_ROTATE); i++) {
             switch (type.coordinate) {
                 default /*Z*/ -> {
                     layer = rotateSquareMatrix(getZLayer(index), -degrees);
@@ -218,7 +221,7 @@ public class RubiesCubeImpl implements IRubiesCube {
                             index,
                             degrees);
             case X, Z -> {
-                for (int i = 0; i < abs(degrees / ONE_TURNOVER); i++) {
+                for (int i = 0; i < abs(degrees / ONE_ROTATE); i++) {
                     CubePiece[][] layer = rotateSquareMatrix(getYLayer(index), -degrees);
                     setYLayer(index, layer);
                     moveAxlesForEachPiece(layer, Coordinates.Y);
@@ -299,9 +302,12 @@ public class RubiesCubeImpl implements IRubiesCube {
     public static class RubiesCubeUtil {
 
         protected static CubePiece[][] rotateSquareMatrix(CubePiece[][] data, int degrees) {
-            return (degrees > 0) ?
-                    rotateSquareMatrix(data.length, (row, column) -> data[data.length - column - 1][row])
-                    : rotateSquareMatrix(data.length, (row, column) -> data[column][data.length - row - 1]);
+            return rotateSquareMatrix(
+                    data.length,
+                    (degrees > 0)
+                            ? (row, column) -> data[data.length - column - 1][row]
+                            : (row, column) -> data[column][data.length - row - 1]
+            );
         }
 
         protected static CubePiece[][] rotateSquareMatrix(int size, BiFunction<Integer, Integer, CubePiece> function) {

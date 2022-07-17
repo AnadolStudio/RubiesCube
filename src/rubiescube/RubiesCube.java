@@ -2,7 +2,9 @@ package rubiescube;
 
 import rubiescube.enumeration.FaceType;
 
-public interface IRubiesCube {
+public interface RubiesCube {
+
+    static final int ONE_ROTATE = 90;
 
     void moveColumn(FaceType type, int index, int degrees);
 

@@ -1,13 +1,13 @@
 package rubiescubesolution;
 
-import rubiescube.IRubiesCube;
+import rubiescube.RubiesCube;
 import rubiescube.imlementation.SpeedRubiesCube;
 
 public abstract class RubiesCubeSolution<T extends SpeedRubiesCube> {
 
-    protected abstract T createSpeedCube(IRubiesCube cube);
+    protected abstract T createSpeedCube(RubiesCube cube);
 
-    public final void run(IRubiesCube cube) {
+    public final void run(RubiesCube cube) {
         T speedCube = createSpeedCube(cube);
 
         cross(speedCube);

@@ -7,7 +7,6 @@ import rubiescube.imlementation.SpeedRubiesCube3x3x3;
 import java.util.Random;
 
 public class RubiesCubeShaker {
-    private static final int ONE_R0TATE = 90;
 
     private enum ShakeType {
         CHESS,
@@ -38,17 +37,11 @@ public class RubiesCubeShaker {
 
         do {
             for (int i = 0; i < count; i++) {
-                // TODO Для предоставления случайных данных - отдельных класс
-                int randomFaceIndex = (int) (Math.random() * FaceType.values().length);
-                boolean isRow = Math.random() < 0.5;
-                int trajectory = Math.random() < 0.5 ? 1 : -1;
-                int countRotate = (int) (Math.random() * 2);
+                FaceType faceType = RandomUtil.getFaceType();
+                int index = RandomUtil.getIndex(side);
+                int degrees = RandomUtil.getDegrees();
 
-                FaceType faceType = FaceType.values()[randomFaceIndex];
-                int index = (int) (Math.random() * side);
-                int degrees = ONE_R0TATE * trajectory * countRotate;
-
-                if (isRow) cube.moveRow(faceType, index, degrees);
+                if (Math.random() < 0.5) cube.moveRow(faceType, index, degrees);
                 else cube.moveColumn(faceType, index, degrees);
             }
 

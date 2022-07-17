@@ -11,7 +11,6 @@ public class CubePiece {
     private final HashMap<Color, Coordinates> coordinateMap = new HashMap<>();
 
     public void addColor(Color color, Coordinates coordinate) {
-        //TODO нужен запрет на редактирование извне?
         colorMap.put(coordinate, color);
         coordinateMap.put(color, coordinate);
     }
